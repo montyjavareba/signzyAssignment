@@ -1,0 +1,27 @@
+'CREATE DATABASE `signzy` /*!40100 DEFAULT CHARACTER SET latin1 */'
+
+'CREATE TABLE `devices` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `active_status` tinyint(1) DEFAULT ''0'',
+  `de_register_date` date DEFAULT NULL,
+  `info` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `register_date` date DEFAULT NULL,
+  `mac_address` varchar(45) NOT NULL,
+  `enable` varchar(45) NOT NULL DEFAULT ''false'',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `mac_address_UNIQUE` (`mac_address`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1'
+
+
+
+'CREATE TABLE `operations` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `device_id` bigint(20) NOT NULL,
+  `operation` varchar(45) NOT NULL,
+  `timestamp` datetime NOT NULL,
+  `description` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_new_table_1_idx` (`device_id`),
+  CONSTRAINT `fk_new_table_1` FOREIGN KEY (`device_id`) REFERENCES `devices` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1'
